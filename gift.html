@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בחרי את המתנה שלך! 🎁</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background-color: #ffcdd2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .gifts-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gift-box {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+        }
+        .gift-box:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        #reveal-section {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 { color: #d32f2f; }
+    </style>
+</head>
+<body>
+<div id="selection-header">
+    <h1>יש כאן 3 מתנות... בחרי אחת! ✨</h1>
+    <div class="gifts-container">
+        <div class="gift-box" onclick="revealEverything()">🎁</div>
+        <div class="gift-box" onclick="revealEverything()">🎁</div>
+        <div class="gift-box" onclick="revealEverything()">🎁</div>
+    </div>
+</div>
+
+<div id="reveal-section">
+    <h2>הפתעה! אנחנו טסים לאירופה באפריל! ✈️🌍</h2>
+    <p>בין ה-21 ל-25 באפריל, רק אני ואת...</p>
+    <img src="us.jpg" alt="Together" style="max-width: 80%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+</div>
+
+<script>
+    function revealEverything() {
+        // העלמת שלב הבחירה
+        document.getElementById('selection-header').style.display = 'none';
+
+        // הצגת המתנה
+        const reveal = document.getElementById('reveal-section');
+        reveal.style.display = 'block';
+
+        // הפעלת זיקוקים חגיגיים
+        confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: 0.6 }
+        });
+    }
+</script>
+</body>
+</html>

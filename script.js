@@ -11,7 +11,7 @@ const noTexts = [
     "תחשבי על זה שוב...",
     "נו באמת קארין!",
     "אולי בכל זאת?",
-    "אני אבכה...",
+    "🥺",
     "טעות בלחיצה, נכון?"
 ];
 noBtn.addEventListener('click', () => {

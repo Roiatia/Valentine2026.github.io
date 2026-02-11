@@ -18,6 +18,8 @@ h1#question {
     margin: 0;
     z-index: 2;
     text-align: center;
+    direction: ltr; /* מגדיר את הכיוון משמאל לימין רק לכותרת הזו */
+    unicode-bidi: isolate;
 }
 
 /* הלב באמצע - מותאם לרזולוציות */
