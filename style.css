@@ -4,28 +4,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    /* שינוי ל-around נותן יותר מרחב פנימי למניעת גלישה */
+    justify-content: space-around;
     background-color: #ffebee;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
-    padding: 40px 10px; /* הוספתי פדינג צדי לניידים */
+    padding: 20px;
     box-sizing: border-box;
 }
 
 h1#question {
     color: #d32f2f;
-    font-size: 2.2rem; /* קצת יותר קטן לבסיס */
+    font-size: 2.2rem;
     margin: 0;
     z-index: 2;
     text-align: center;
-    direction: ltr; /* מגדיר את הכיוון משמאל לימין רק לכותרת הזו */
+    direction: ltr;
     unicode-bidi: isolate;
+    max-width: 90%; /* מונע מהטקסט לגעת בקצוות */
 }
 
-/* הלב באמצע - מותאם לרזולוציות */
 .heart-bg {
     position: relative;
-    font-size: clamp(120px, 25vw, 250px); /* גודל דינמי לפי המסך */
+    /* הקטנה קלה של הלב כדי להשאיר מקום לכפתורים בנייד */
+    font-size: clamp(80px, 20vw, 200px);
     color: #ff5252;
     animation: beat 1.2s infinite ease-in-out;
     z-index: 1;
@@ -40,15 +42,17 @@ h1#question {
     50% { transform: scale(1.1); }
 }
 
-/* הכפתורים למטה */
 .buttons {
     display: flex;
     gap: 15px;
     justify-content: center;
     align-items: center;
-    min-height: 200px; /* מקום לכפתור שיגדל מאוד */
-    z-index: 2;
+    /* wrap מבטיח שהכפתורים לא יצאו מהצדדים אלא ירדו שורה */
+    flex-wrap: wrap;
+    min-height: 30vh; /* שטח מוגדר מראש לכפתורים */
     width: 100%;
+    max-width: 100vw;
+    z-index: 2;
 }
 
 button {
@@ -57,24 +61,31 @@ button {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.2s ease-out; /* מהירות תגובה טובה יותר */
+    transition: all 0.2s ease-out;
     white-space: nowrap;
-    touch-action: manipulation; /* מונע זום בטעות בנייד */
+    touch-action: manipulation;
 }
 
 #yes-btn {
     background-color: #ff5252;
     color: white;
     box-shadow: 0 4px 15px rgba(255, 82, 82, 0.3);
+    /* מעצורי בטיחות - הכפתור לא יהיה רחב/גבוה מהמסך */
+    max-width: 90vw;
+    max-height: 40vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #no-btn {
     background-color: #ffffff;
     color: #555;
     border: 1px solid #ddd;
+    /* מונע מהכפתור הנייד להיעלם מתחת לכפתור ה-YES הגדול */
+    z-index: 5;
 }
 
-/* מסך הצלחה ותמונה רספונסיבית */
+/* שאר הקוד (מסך הצלחה) נשאר זהה */
 .hidden { display: none !important; }
 
 #success-screen {
@@ -88,19 +99,20 @@ button {
     z-index: 100;
     padding: 20px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .couple-img {
-    max-width: 90%; /* לא יברח מהצדדים בטלפון */
-    max-height: 50vh; /* שלא יהיה ארוך מדי */
+    max-width: 90%;
+    max-height: 50vh;
     border-radius: 20px;
     margin-top: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     object-fit: cover;
 }
 
-/* התאמות ספציפיות למסכים ממש קטנים */
 @media (max-width: 400px) {
-    h1#question { font-size: 1.8rem; }
-    button { padding: 10px 20px; font-size: 0.9rem; }
+    h1#question { font-size: 1.6rem; }
+    .heart-bg { font-size: 100px; }
+    .buttons { min-height: 250px; }
 }
